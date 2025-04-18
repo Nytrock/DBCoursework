@@ -2,11 +2,11 @@ using DBCoursework.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if (builder.Environment.IsDevelopment()) {
+if (builder.Environment.IsDevelopment())
     builder.Configuration.AddUserSecrets<Program>();
-} else {
+else
     builder.Configuration.AddEnvironmentVariables();
-}
+
 builder.Services.Configure<DatabaseSettings>(
     builder.Configuration.GetSection("DatabaseSettings")
 );
@@ -17,7 +17,6 @@ builder.Services.AddSingleton<DatabaseManager>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment()) {
-    app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 

@@ -3,6 +3,8 @@ using Npgsql;
 
 namespace DBCoursework.Database {
     public static class DatabaseUtils {
+        private readonly static List<Type> _allModels = [];
+
         public static string GetModelName<T>() where T : BaseModel {
             string camelCaseName = typeof(T).Name.Replace("Model", "");
             return camelCaseName.ToSnakeCase();
@@ -28,6 +30,21 @@ namespace DBCoursework.Database {
                 return Convert.ToDateTime(field) == DateTime.MinValue;
 
             return false;
+        }
+
+        public static IEnumerable<Type> GetAllModels() {
+            if (_allModels.Count == 0)
+                GenerateAllModelsList();
+            return _allModels;
+        }
+
+        private static void GenerateAllModelsList() {
+            Type baseModel = typeof(BaseModel);
+
+            foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
+                foreach (var t in a.GetTypes())
+                    if (t.IsSubclassOf(baseModel))
+                        _allModels.Add(t);
         }
     }
 }

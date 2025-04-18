@@ -1,46 +1,49 @@
-﻿<!DOCTYPE html>
+﻿@using DBCoursework.Database
+@using DBCoursework.Utils
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DBCoursework</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/DBCoursework.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">DBCoursework</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="container">
+        <header>
+            <div class="site-name"><a href="/">Админка соцальной сети</a></div>
+        </header>
+
+        <nav>
+            <div class="breadcrumbs">
+                <a href="/">Главная</a>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - DBCoursework - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        <div class="main">
+            <nav class="sticky nav-sidebar">
+                <table>
+                    <caption>
+                        <span class="section">Модели</span>
+                    </caption>
+
+                    @foreach (var databaseModel in DatabaseUtils.GetAllModels()) {
+                        <tr class="model-group">
+                            <th scope="row" id="auth-group">
+                                <a href="/@databaseModel.Name">@databaseModel.Name.Replace("Model", "")</a>
+                            </th>
+                            <td>
+                                <a href="/@databaseModel.Name/add" class="addlink" aria-describedby="auth-group">Add</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </nav>
+            <main class="content">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

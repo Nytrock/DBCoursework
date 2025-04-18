@@ -1,22 +1,189 @@
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
   position: relative;
   min-height: 100%;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    font-family: "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+nav {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+a {
+    color: #81d4fa;
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    min-width: 980px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: #417690;
+}
+
+table {
+    display: table;
+    box-sizing: border-box;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border-spacing: 2px;
+    border-color: gray;
+    border-collapse: collapse;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+tr:nth-child(even) {
+    background: #212121;
+}
+
+td, th {
+    font-size: 0.8125rem;
+    line-height: 1rem;
+    border-bottom: 1px solid #272727;
+    vertical-align: top;
+    padding: 8px;
+}
+
+th {
+    font-weight: 500;
+    text-align: left;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+caption {
+    display: table-caption;
+    unicode-bidi: isolate;
+}
+
+.site-name {
+    padding: 0;
+    margin: 0;
+    margin-inline-end: 20px;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.site-name a {
+    color: #ffc;
+}
+
+.breadcrumbs {
+    background: #264b5d;
+    padding: 10px 40px;
+    border: none;
+    color: #c4dce8;
+    text-align: left;
+}
+
+.breadcrumbs a {
+    color: #e0e0e0;
+}
+
+.breadcrumbs a:hover {
+    color: #c4dce8;
+}
+
+.nav-sidebar {
+    z-index: 15;
+    flex: 0 0 275px;
+    left: -276px;
+    border-top: 1px solid transparent;
+    border-right: 1px solid #272727;
+    background-color: #121212;
+    overflow: auto;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+}
+
+.container > .main {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.nav-sidebar table {
+    width: 100%;
+}
+
+.nav-sidebar th {
+    width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.addlink {
+    padding-left: 16px;
+    background: url(../img/icon-addlink.svg) 0 1px no-repeat;
+}
+
+.main caption {
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    text-align: left;
+    background: #417690;
+    color: #f7f7f7;
+}
+
+.nav-sidebar th, .main caption {
+    padding-left: 16px;
+}
+
+.content {
+    max-width: calc(100% - 276px);
+    width: 100%;
+}
+
+.error {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error-text {
+    color: #f7f7f7;
 }
