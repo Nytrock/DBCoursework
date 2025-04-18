@@ -1,4 +1,5 @@
 using DBCoursework.Database;
+using DBCoursework.Forms;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.Configure<DatabaseSettings>(
 
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<DatabaseManager>();
+builder.Services.AddSingleton<FormsManager>();
 
 var app = builder.Build();
 

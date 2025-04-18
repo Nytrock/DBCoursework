@@ -27,13 +27,13 @@
                         <span class="section">Модели</span>
                     </caption>
 
-                    @foreach (var databaseModel in DatabaseUtils.GetAllModels()) {
+                    @foreach (var tableName in DatabaseManager.GetAllTables()) {
                         <tr class="model-group">
                             <th scope="row" id="auth-group">
-                                <a href="/@databaseModel.Name">@databaseModel.Name.Replace("Model", "")</a>
+                                <a href="/@tableName">@tableName</a>
                             </th>
                             <td>
-                                <a href="/@databaseModel.Name/add" class="addlink" aria-describedby="auth-group">Add</a>
+                                <a href="/@tableName/create" class="addlink" aria-describedby="auth-group">Add</a>
                             </td>
                         </tr>
                     }

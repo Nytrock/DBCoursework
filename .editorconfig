@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS8601: Возможно, назначение-ссылка, допускающее значение NULL.
+dotnet_diagnostic.CS8601.severity = none
+
+# CA1305: Укажите IFormatProvider
+dotnet_diagnostic.CA1305.severity = silent

@@ -1,0 +1,53 @@
+﻿@page "/{TableName}"
+@model ReadTableModel
+@{
+    ViewData["Title"] = $"Просмотр таблицы {Model.TableName}";
+}
+
+<h1>Таблица @Model.TableName</h1>
+<div id="content-main">
+    <ul class="object-tools">
+        <li>
+            <a href="/@Model.TableName/create" class="addlink">
+                Добавить
+            </a>
+        </li>
+    </ul>
+    <div class="changelist">
+        <div class="changelist-form-container">
+            @if (@Model.Rows.Count != 0) {
+                <div class="results">
+                    <table id="result_list">
+                        <thead>
+                            <tr>
+                                @foreach (var column in Model.Rows.First().GetColumns()) {
+                                    <th>
+                                        <div class="text">@column.Key</div>
+                                        <div class="clear"></div>
+                                    </th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var row in Model.Rows) {
+                                <tr>
+                                    @foreach (var column in row.GetColumns()) {
+                                        if (column.Key == "id") {
+                                            <th class="field">
+                                                <a href="/@Model.TableName/@column.Value">@column.Value</a>
+                                            </th>
+                                        } else {
+                                            <td class="field">@column.Value</td>
+                                        }
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            <p class="paginator">Кол-во объектов: @Model.Rows.Count</p>
+        </div>
+    </div>
+</div>
+<br class="clear">

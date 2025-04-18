@@ -11,6 +11,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #121212;
+    color: #eeeeee;
     font-family: "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -53,6 +54,12 @@ table {
     border-spacing: 2px;
     border-color: gray;
     border-collapse: collapse;
+}
+
+.table-title {
+    margin: 0 0 20px;
+    font-weight: 300;
+    font-size: 1.25rem;
 }
 
 tr {
@@ -174,6 +181,7 @@ caption {
 .content {
     max-width: calc(100% - 276px);
     width: 100%;
+    padding: 20px 40px;
 }
 
 .error {
@@ -186,4 +194,166 @@ caption {
 
 .error-text {
     color: #f7f7f7;
+}
+
+.object-tools {
+    font-size: 0.625rem;
+    font-weight: bold;
+    padding-left: 0;
+    float: right;
+    position: relative;
+    margin-top: -48px;
+}
+
+.object-tools li {
+    display: block;
+    float: left;
+    margin-left: 5px;
+    height: 1rem;
+}
+
+.object-tools a {
+    display: block;
+    float: left;
+    padding: 3px 12px;
+    background: var(--object-tools-bg);
+    color: var(--object-tools-fg);
+    font-weight: 400;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+thead th {
+    padding: 0;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: normal;
+    text-transform: uppercase;
+    background: #212121;
+    color: #d0d0d0;
+    font-size: 0.6875rem;
+    border: none;
+    border-top: 1px solid #272727;
+    border-bottom: 1px solid #272727;
+}
+
+.changelist {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.changelist .changelist-form-container {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.changelist-form .results {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.changelist table {
+    width: 100%;
+}
+
+table thead th .text {
+    display: block;
+    padding: 8px 10px;
+}
+
+.paginator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8125rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 22px;
+    margin: 0;
+    border-top: 1px solid #272727;
+    width: 100%;
+}
+
+.changelist .paginator {
+    color: #d0d0d0;
+    border-bottom: 1px solid #272727;
+    background: #121212;
+    overflow: hidden;
+}
+
+.form-row {
+    overflow: hidden;
+    padding: 10px;
+    font-size: 0.8125rem;
+    border-bottom: 1px solid #272727;
+}
+
+.flex-container {
+    display: flex;
+}
+
+label {
+    display: block;
+    padding: 4px 10px 0 0;
+    min-width: 160px;
+    width: 160px;
+    word-wrap: break-word;
+}
+
+input {
+    border: 1px solid #353535;
+    border-radius: 4px;
+    padding: 5px 6px;
+    margin-top: 0;
+    color: #eeeeee;
+    background-color: #121212;
+}
+
+.submit-row {
+    padding: 12px 14px 12px;
+    margin: 30px 0 20px 0;
+    background: #212121;
+    border: 1px solid #272727;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.submitlink {
+    border: none;
+    font-weight: 400;
+    background: #417690;
+    padding: 10px 15px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.content-main {
+    float: left;
+    width: 100%;
+}
+
+label:has(+ input[data-val-required])::after {
+    content: "*";
+    color: red;
+}
+
+.deletelink {
+    display: block;
+    background: #ba2121;
+    border-radius: 4px;
+    padding: 0.625rem 0.9375rem;
+    line-height: 0.9375rem;
+    color: #fff;
+    right: 12px;
+    top: -70px;
+    position: relative;
+    margin-left: auto;
+    cursor: pointer;
 }

@@ -1,0 +1,90 @@
+﻿@page "/Users/{id}"
+@using DBCoursework.Forms.Tables
+@model DBCoursework.BaseModels.UpdateTableModel<UsersForm>
+@{
+    ViewData["Title"] = "Изменить пользователя";
+}
+
+<h1 class="table-title">Изменить пользователя</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="flex-container">
+                <label asp-for="Form.Username"></label>
+                <input asp-for="Form.Username">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="flex-container">
+                <label asp-for="Form.Slug"></label>
+                <input asp-for="Form.Slug">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="flex-container">
+                <label asp-for="Form.Password"></label>
+                <input asp-for="Form.Password">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="flex-container">
+                <label asp-for="Form.Image"></label>
+                <input asp-for="Form.Image">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="flex-container">
+                <label asp-for="Form.Birthday"></label>
+                <input asp-for="Form.Birthday">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="flex-container">
+                <label asp-for="Form.Email"></label>
+                <input asp-for="Form.Email">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="flex-container">
+                <label asp-for="Form.Description"></label>
+                <input asp-for="Form.Description">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="flex-container">
+                <label asp-for="Form.PhoneNumber"></label>
+                <input asp-for="Form.PhoneNumber">
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Изменить" class="submitlink">
+    </div>
+</form>
+
+<form method="post" asp-page-handler="Delete">
+    <input type="submit" value="Удалить" class="deletelink">
+</form>
