@@ -19,7 +19,7 @@ namespace DBCoursework.BaseModels {
             _tableName = typeof(T).Name.Replace("Form", "");
         }
 
-        async public Task<IActionResult> OnGetAsync(int id) {
+        async public virtual Task<IActionResult> OnGetAsync(int id) {
             Form = _formsManager.GetFormForTable(_tableName) as T;
 
             TableRow row = await _databaseManager.GetById(_tableName, id);
@@ -27,17 +27,19 @@ namespace DBCoursework.BaseModels {
             return Page();
         }
 
-        async public Task<IActionResult> OnPostAsync(int id) {
+        async public virtual Task<IActionResult> OnPostAsync(int id) {
+            if (!ModelState.IsValid)
+                return Page();
+
             TableRow row = new();
             Form.SetDataToTableRow(row, typeof(T));
             await _databaseManager.Update(_tableName, row, id);
-            return Redirect(this.GetTablePageUrl(_tableName));
+            return Redirect(PageUtils.GetTablePageUrl(this, _tableName));
         }
 
-        async public Task<IActionResult> OnPostDeleteAsync(int id) {
-            Console.WriteLine(1);
+        async public virtual Task<IActionResult> OnPostDeleteAsync(int id) {
             await _databaseManager.Delete(_tableName, id);
-            return Redirect(this.GetTablePageUrl(_tableName));
+            return Redirect(PageUtils.GetTablePageUrl(this, _tableName));
         }
     }
 }

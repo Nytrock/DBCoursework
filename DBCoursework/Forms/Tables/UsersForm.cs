@@ -19,6 +19,7 @@ namespace DBCoursework.Forms.Tables {
         public string? Password { get; set; }
 
         [Display(Name = "Картинка:")]
+        [DataType(DataType.ImageUrl)]
         public string? Image { get; set; }
 
         [DataType(DataType.Date)]

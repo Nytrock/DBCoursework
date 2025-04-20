@@ -3,6 +3,8 @@
 @model DBCoursework.BaseModels.UpdateTableModel<UsersForm>
 @{
     ViewData["Title"] = "Изменить пользователя";
+    ViewData["Table"] = "Users";
+    ViewData["Type"] = "Update";
 }
 
 <h1 class="table-title">Изменить пользователя</h1>
@@ -10,72 +12,80 @@
 <form class="content-main" method="post">
     <div class="form-row field-title">
         <div>
-            <div class="flex-container">
+            <div class="input-container">
                 <label asp-for="Form.Username"></label>
                 <input asp-for="Form.Username">
+                <span asp-validation-for="Form.Username"></span>
             </div>
         </div>
     </div>
 
     <div class="form-row field-title">
         <div>
-            <div class="flex-container">
+            <div class="input-container">
                 <label asp-for="Form.Slug"></label>
                 <input asp-for="Form.Slug">
+                <span asp-validation-for="Form.Slug"></span>
             </div>
         </div>
     </div>
 
     <div class="form-row field-title">
         <div>
-            <div class="flex-container">
+            <div class="input-container">
                 <label asp-for="Form.Password"></label>
                 <input asp-for="Form.Password">
+                <span asp-validation-for="Form.Password"></span>
             </div>
         </div>
     </div>
 
     <div class="form-row field-title">
         <div>
-            <div class="flex-container">
+            <div class="input-container">
                 <label asp-for="Form.Image"></label>
                 <input asp-for="Form.Image">
+                <span asp-validation-for="Form.Image"></span>
             </div>
         </div>
     </div>
 
     <div class="form-row field-title">
         <div>
-            <div class="flex-container">
+            <div class="input-container">
                 <label asp-for="Form.Birthday"></label>
                 <input asp-for="Form.Birthday">
+                <span asp-validation-for="Form.Birthday"></span>
             </div>
         </div>
     </div>
 
     <div class="form-row field-title">
         <div>
-            <div class="flex-container">
+            <div class="input-container">
                 <label asp-for="Form.Email"></label>
                 <input asp-for="Form.Email">
+                <span asp-validation-for="Form.Email"></span>
             </div>
         </div>
     </div>
 
     <div class="form-row field-title">
         <div>
-            <div class="flex-container">
+            <div class="input-container">
                 <label asp-for="Form.Description"></label>
                 <input asp-for="Form.Description">
+                <span asp-validation-for="Form.Description"></span>
             </div>
         </div>
     </div>
 
     <div class="form-row field-title">
         <div>
-            <div class="flex-container">
+            <div class="input-container">
                 <label asp-for="Form.PhoneNumber"></label>
                 <input asp-for="Form.PhoneNumber">
+                <span asp-validation-for="Form.PhoneNumber"></span>
             </div>
         </div>
     </div>

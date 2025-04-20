@@ -11,12 +11,23 @@
 <body>
     <div class="container">
         <header>
-            <div class="site-name"><a href="/">Админка соцальной сети</a></div>
+            <div class="site-name"><a href="/">Админка социальной сети</a></div>
         </header>
 
         <nav>
             <div class="breadcrumbs">
                 <a href="/">Главная</a>
+                @{
+                    string? pageType = ViewData["Type"] as string;
+                    string? table = ViewData["Table"] as string;
+                }
+                @if (pageType == "Read") {
+                    <span>> @table</span>
+                } else if (pageType == "Create") {
+                    <span>> <a href="/@table">@table</a> > Добавление</span>
+                } else if (pageType == "Update") {
+                    <span>> <a href="/@table">@table</a> > Редактирование</span>
+                }
             </div>
         </nav>
 

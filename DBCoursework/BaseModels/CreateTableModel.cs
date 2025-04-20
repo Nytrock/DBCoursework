@@ -19,15 +19,18 @@ namespace DBCoursework.BaseModels {
             _tableName = typeof(T).Name.Replace("Form", "");
         }
 
-        public void OnGet() {
+        public virtual void OnGet() {
             Form = _formsManager.GetFormForTable(_tableName) as T;
         }
 
-        async public Task<IActionResult> OnPostAsync() {
+        async public virtual Task<IActionResult> OnPostAsync() {
+            if (!ModelState.IsValid)
+                return Page();
+
             TableRow tableRow = new();
             Form.SetDataToTableRow(tableRow, typeof(T));
             await _databaseManager.Insert(_tableName, tableRow);
-            return Redirect(this.GetTablePageUrl(_tableName));
+            return Redirect(PageUtils.GetTablePageUrl(this, _tableName));
         }
     }
 }

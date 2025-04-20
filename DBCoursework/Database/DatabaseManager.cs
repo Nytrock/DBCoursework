@@ -5,7 +5,8 @@ using Npgsql;
 namespace DBCoursework.Database {
     public class DatabaseManager {
         private static readonly List<string> _allTables = [
-            "Users", "Communities"
+            "Users", "UserLogins", "Friends", "Communities", "Posts",
+            "PostAttachments", "Comments", "Chats", "ChatMessages", "UserMessages"
         ];
 
         private readonly NpgsqlDataSource _dataSource;

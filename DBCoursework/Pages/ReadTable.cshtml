@@ -2,6 +2,8 @@
 @model ReadTableModel
 @{
     ViewData["Title"] = $"Просмотр таблицы {Model.TableName}";
+    ViewData["Table"] = Model.TableName;
+    ViewData["Type"] = "Read";
 }
 
 <h1>Таблица @Model.TableName</h1>

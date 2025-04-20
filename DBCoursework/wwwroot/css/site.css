@@ -290,8 +290,15 @@ table thead th .text {
     border-bottom: 1px solid #272727;
 }
 
-.flex-container {
+.input-container {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.input-container span {
+    display: block;
+    width: 100%;
+    color: red;
 }
 
 label {
