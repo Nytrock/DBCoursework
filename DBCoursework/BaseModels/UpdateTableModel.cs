@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DBCoursework.BaseModels {
     public class UpdateTableModel<T> : PageModel where T : BaseForm {
-        private readonly DatabaseManager _databaseManager;
+        protected readonly DatabaseManager _databaseManager;
         private readonly FormsManager _formsManager;
         private readonly string _tableName;
 
@@ -19,15 +19,15 @@ namespace DBCoursework.BaseModels {
             _tableName = typeof(T).Name.Replace("Form", "");
         }
 
-        async public virtual Task<IActionResult> OnGetAsync(int id) {
+        public async virtual Task<IActionResult> OnGetAsync(int id) {
             Form = _formsManager.GetFormForTable(_tableName) as T;
 
-            TableRow row = await _databaseManager.GetById(_tableName, id);
+            TableRow row = await _databaseManager.ReadById(_tableName, id);
             Form?.GetDataFromTableRow(row, typeof(T));
             return Page();
         }
 
-        async public virtual Task<IActionResult> OnPostAsync(int id) {
+        public async virtual Task<IActionResult> OnPostAsync(int id) {
             if (!ModelState.IsValid)
                 return Page();
 
@@ -37,7 +37,7 @@ namespace DBCoursework.BaseModels {
             return Redirect(PageUtils.GetTablePageUrl(this, _tableName));
         }
 
-        async public virtual Task<IActionResult> OnPostDeleteAsync(int id) {
+        public async Task<IActionResult> OnPostDeleteAsync(int id) {
             await _databaseManager.Delete(_tableName, id);
             return Redirect(PageUtils.GetTablePageUrl(this, _tableName));
         }

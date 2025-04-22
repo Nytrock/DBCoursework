@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DBCoursework.BaseModels {
     public class CreateTableModel<T> : PageModel where T : BaseForm {
-        private readonly DatabaseManager _databaseManager;
+        protected readonly DatabaseManager _databaseManager;
         private readonly FormsManager _formsManager;
         private readonly string _tableName;
+        protected int _createdObjectId;
 
         [BindProperty]
         public required T Form { get; set; }
@@ -19,17 +20,18 @@ namespace DBCoursework.BaseModels {
             _tableName = typeof(T).Name.Replace("Form", "");
         }
 
-        public virtual void OnGet() {
+        public async virtual Task<IActionResult> OnGetAsync() {
             Form = _formsManager.GetFormForTable(_tableName) as T;
+            return Page();
         }
 
-        async public virtual Task<IActionResult> OnPostAsync() {
+        public async virtual Task<IActionResult> OnPostAsync() {
             if (!ModelState.IsValid)
                 return Page();
 
             TableRow tableRow = new();
-            Form.SetDataToTableRow(tableRow, typeof(T));
-            await _databaseManager.Insert(_tableName, tableRow);
+            Form.SetDataToTableRow(tableRow, typeof(T), true);
+            _createdObjectId = await _databaseManager.Create(_tableName, tableRow);
             return Redirect(PageUtils.GetTablePageUrl(this, _tableName));
         }
     }

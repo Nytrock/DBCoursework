@@ -15,8 +15,8 @@ namespace DBCoursework.Pages {
             _databaseManager = databaseManager;
         }
 
-        async public Task<IActionResult> OnGetAsync() {
-            Rows = await _databaseManager.GetAll(TableName);
+        public async Task<IActionResult> OnGetAsync() {
+            Rows = await _databaseManager.ReadAll(TableName);
             return Page();
         }
     }

@@ -309,7 +309,7 @@ label {
     word-wrap: break-word;
 }
 
-input {
+input, select {
     border: 1px solid #353535;
     border-radius: 4px;
     padding: 5px 6px;
@@ -346,7 +346,7 @@ input {
     width: 100%;
 }
 
-label:has(+ input[data-val-required])::after {
+label:has(+ input[data-val-required])::after, label:has(+ select[data-val-required])::after {
     content: "*";
     color: red;
 }
