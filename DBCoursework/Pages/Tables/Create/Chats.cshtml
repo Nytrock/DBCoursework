@@ -1,0 +1,55 @@
+﻿@page "/Chats/create"
+@model DBCoursework.Pages.Tables.Create.ChatsModel
+@{
+    ViewData["Title"] = "Добавить чат";
+    ViewData["Table"] = "Chats";
+    ViewData["Type"] = "Create";
+}
+
+<h1 class="table-title">Добавить чат</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.CreatorId"></label>
+                <select asp-for="Form.CreatorId" asp-items="Model.Creator"></select>
+                <span asp-validation-for="Form.CreatorId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Name"></label>
+                <input asp-for="Form.Name">
+                <span asp-validation-for="Form.Name"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Image"></label>
+                <input asp-for="Form.Image">
+                <span asp-validation-for="Form.Image"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Members"></label>
+                <select asp-for="Form.Members" asp-items="Model.Members"></select>
+                <span asp-validation-for="Form.Members"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Добавить" class="submitlink">
+    </div>
+</form>

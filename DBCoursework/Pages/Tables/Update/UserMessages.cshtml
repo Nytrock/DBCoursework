@@ -1,0 +1,59 @@
+﻿@page "/UserMessages/{id}"
+@model DBCoursework.Pages.Tables.Update.UserMessagesModel
+@{
+    ViewData["Title"] = "Обновить сообщение";
+    ViewData["Table"] = "UserMessages";
+    ViewData["Type"] = "Update";
+}
+
+<h1 class="table-title">Изменить сообщение</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.SenderId"></label>
+                <select asp-for="Form.SenderId" asp-items="Model.Sender"></select>
+                <span asp-validation-for="Form.SenderId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.ReceiverId"></label>
+                <select asp-for="Form.ReceiverId" asp-items="Model.Receiver"></select>
+                <span asp-validation-for="Form.ReceiverId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Message"></label>
+                <textarea asp-for="Form.Message"><</textarea>
+                <span asp-validation-for="Form.Message"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.CreationTime"></label>
+                <input asp-for="Form.CreationTime">
+                <span asp-validation-for="Form.CreationTime"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Изменить" class="submitlink">
+    </div>
+</form>
+
+<form method="post" asp-page-handler="Delete">
+    <input type="submit" value="Удалить" class="deletelink">
+</form>

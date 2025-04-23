@@ -1,0 +1,45 @@
+﻿@page "/Friends/create"
+@model DBCoursework.Pages.Tables.Create.FriendsModel
+@{
+    ViewData["Title"] = "Добавить друга";
+    ViewData["Table"] = "Friends";
+    ViewData["Type"] = "Create";
+}
+
+<h1 class="table-title">Добавить друга</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.UserId"></label>
+                <select asp-for="Form.UserId" asp-items="Model.OriginalUser"></select>
+                <span asp-validation-for="Form.UserId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.FriendId"></label>
+                <select asp-for="Form.FriendId" asp-items="Model.Friend"></select>
+                <span asp-validation-for="Form.FriendId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Note"></label>
+                <input asp-for="Form.Note">
+                <span asp-validation-for="Form.Note"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Добавить" class="submitlink">
+    </div>
+</form>

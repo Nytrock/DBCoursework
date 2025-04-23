@@ -1,0 +1,69 @@
+﻿@page "/Posts/{id}"
+@model DBCoursework.Pages.Tables.Update.PostsModel
+@{
+    ViewData["Title"] = "Обновить пост";
+    ViewData["Table"] = "Posts";
+    ViewData["Type"] = "Update";
+}
+
+<h1 class="table-title">Изменить пост</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.AuthorId"></label>
+                <select asp-for="Form.AuthorId" asp-items="Model.Author"></select>
+                <span asp-validation-for="Form.AuthorId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.CommunityId"></label>
+                <select asp-for="Form.CommunityId" asp-items="Model.Community"></select>
+                <span asp-validation-for="Form.CommunityId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Text"></label>
+                <textarea asp-for="Form.Text"><</textarea>
+                <span asp-validation-for="Form.Text"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.CreationTime"></label>
+                <input asp-for="Form.CreationTime">
+                <span asp-validation-for="Form.CreationTime"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Likes"></label>
+                <select asp-for="Form.Likes" asp-items="Model.Likes"></select>
+                <span asp-validation-for="Form.Likes"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Изменить" class="submitlink">
+    </div>
+</form>
+
+<form method="post" asp-page-handler="Delete">
+    <input type="submit" value="Удалить" class="deletelink">
+</form>

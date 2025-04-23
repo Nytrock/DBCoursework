@@ -4,12 +4,16 @@ namespace DBCoursework.Forms.Tables {
     public class ChatMessagesForm : BaseForm {
         [Required]
         [Display(Name = "Пользователь:")]
-        public int MemberId { get; set; }
+        public int UserId { get; set; }
+
+        [Required]
+        [Display(Name = "Чат:")]
+        public int ChatId { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Сообщение:")]
-        public string? Messsage { get; set; }
+        public string? Message { get; set; }
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Время создания:")]

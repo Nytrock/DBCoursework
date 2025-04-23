@@ -1,0 +1,55 @@
+﻿@page "/Posts/create"
+@model DBCoursework.Pages.Tables.Create.PostsModel
+@{
+    ViewData["Title"] = "Добавить пост";
+    ViewData["Table"] = "Posts";
+    ViewData["Type"] = "Create";
+}
+
+<h1 class="table-title">Добавить пост</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.AuthorId"></label>
+                <select asp-for="Form.AuthorId" asp-items="Model.Author"></select>
+                <span asp-validation-for="Form.AuthorId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.CommunityId"></label>
+                <select asp-for="Form.CommunityId" asp-items="Model.Community"></select>
+                <span asp-validation-for="Form.CommunityId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Text"></label>
+                <textarea asp-for="Form.Text"><</textarea>
+                <span asp-validation-for="Form.Text"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Likes"></label>
+                <select asp-for="Form.Likes" asp-items="Model.Likes"></select>
+                <span asp-validation-for="Form.Likes"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Добавить" class="submitlink">
+    </div>
+</form>

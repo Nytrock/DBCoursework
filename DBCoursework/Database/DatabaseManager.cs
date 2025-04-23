@@ -53,7 +53,7 @@ namespace DBCoursework.Database {
             return rows.Select(row => Convert.ToInt32(row.GetColumn(secondIdName))).ToList();
         }
 
-        public async void UpdateManyToMany(string tableName, string firstIdName, int firstId, string secondIdName, IEnumerable<int>? secondIds) {
+        public async Task UpdateManyToMany(string tableName, string firstIdName, int firstId, string secondIdName, IEnumerable<int>? secondIds) {
             tableName = tableName.ToSnakeCase();
             firstIdName = firstIdName.ToSnakeCase();
             secondIdName = secondIdName.ToSnakeCase();
@@ -69,22 +69,22 @@ namespace DBCoursework.Database {
                 if (secondIds.Contains(oldSecondId))
                     continue;
 
-                DeleteManyToMany(tableName, firstIdName, firstId, secondIdName, oldSecondId);
+                await DeleteManyToMany(tableName, firstIdName, firstId, secondIdName, oldSecondId);
             }
 
             foreach (var secondId in secondIds) {
                 if (oldSecondIds.Contains(secondId))
                     continue;
-                CreateManyToMany(tableName, firstIdName, firstId, secondIdName, secondId);
+                await CreateManyToMany(tableName, firstIdName, firstId, secondIdName, secondId);
             }
         }
 
-        public async void DeleteManyToMany(string tableName, string firstIdName, int firstId, string secondIdName, int secondId) {
+        public async Task DeleteManyToMany(string tableName, string firstIdName, int firstId, string secondIdName, int secondId) {
             string command = $"DELETE FROM {tableName} WHERE {firstIdName} = {firstId} AND {secondIdName} = {secondId}";
             await ExecuteCommand(command);
         }
 
-        public async void CreateManyToMany(string tableName, string firstIdName, int firstId, string secondIdName, int secondId) {
+        public async Task CreateManyToMany(string tableName, string firstIdName, int firstId, string secondIdName, int secondId) {
             string command = $"INSERT INTO {tableName} ({firstIdName}, {secondIdName}) VALUES ({firstId}, {secondId})";
             await ExecuteCommand(command);
         }
@@ -105,7 +105,6 @@ namespace DBCoursework.Database {
             command += " returning id";
             NpgsqlCommand sqlCommand = _dataSource.CreateCommand(command);
             var result = await sqlCommand.ExecuteScalarAsync();
-            Console.WriteLine(result);
             return Convert.ToInt32(result);
         }
 

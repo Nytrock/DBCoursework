@@ -1,12 +1,12 @@
-﻿@page "/Communities/{id}"
-@model DBCoursework.Pages.Tables.Update.CommunitiesModel
+﻿@page "/Chats/{id}"
+@model DBCoursework.Pages.Tables.Update.ChatsModel
 @{
-    ViewData["Title"] = "Обновить сообщество";
-    ViewData["Table"] = "Communities";
+    ViewData["Title"] = "Обновить чат";
+    ViewData["Table"] = "Chats";
     ViewData["Type"] = "Update";
 }
 
-<h1 class="table-title">Изменить сообщество</h1>
+<h1 class="table-title">Изменить чат</h1>
 
 <form class="content-main" method="post">
     <div class="form-row field-title">
@@ -32,29 +32,9 @@
     <div class="form-row field-title">
         <div>
             <div class="input-container">
-                <label asp-for="Form.Slug"></label>
-                <input asp-for="Form.Slug">
-                <span asp-validation-for="Form.Slug"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-row field-title">
-        <div>
-            <div class="input-container">
                 <label asp-for="Form.Image"></label>
                 <input asp-for="Form.Image">
                 <span asp-validation-for="Form.Image"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-row field-title">
-        <div>
-            <div class="input-container">
-                <label asp-for="Form.Description"></label>
-                <input asp-for="Form.Description">
-                <span asp-validation-for="Form.Description"></span>
             </div>
         </div>
     </div>

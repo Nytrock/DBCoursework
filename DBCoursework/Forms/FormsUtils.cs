@@ -1,5 +1,6 @@
 ﻿using DBCoursework.Database;
 using DBCoursework.Utils;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DBCoursework.Forms {
     public static class FormsUtils {
@@ -26,6 +27,16 @@ namespace DBCoursework.Forms {
 
                 tableRow.SetColumn(property.Name.ToSnakeCase(), value);
             }
+        }
+
+        public static IEnumerable<SelectListItem> GenerateSelectFromRows(this List<TableRow> rows, string columnName) {
+            List<SelectListItem> result = [];
+            foreach (TableRow row in rows) {
+                int id = Convert.ToInt32(row.GetColumn("id"));
+                string? name = Convert.ToString(row.GetColumn(columnName));
+                result.Add(new(name, id.ToString()));
+            }
+            return result;
         }
     }
 }

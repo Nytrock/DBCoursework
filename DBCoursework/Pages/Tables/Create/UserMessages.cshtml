@@ -1,0 +1,45 @@
+﻿@page "/UserMessages/create"
+@model DBCoursework.Pages.Tables.Create.UserMessagesModel
+@{
+    ViewData["Title"] = "Добавить сообщение";
+    ViewData["Table"] = "UserMessages";
+    ViewData["Type"] = "Create";
+}
+
+<h1 class="table-title">Добавить сообщение</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.SenderId"></label>
+                <select asp-for="Form.SenderId" asp-items="Model.Sender"></select>
+                <span asp-validation-for="Form.SenderId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.ReceiverId"></label>
+                <select asp-for="Form.ReceiverId" asp-items="Model.Receiver"></select>
+                <span asp-validation-for="Form.ReceiverId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.Message"></label>
+                <textarea asp-for="Form.Message"><</textarea>
+                <span asp-validation-for="Form.Message"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Добавить" class="submitlink">
+    </div>
+</form>

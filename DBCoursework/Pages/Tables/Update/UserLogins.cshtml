@@ -1,0 +1,39 @@
+﻿@page "/UserLogins/{id}"
+@model DBCoursework.Pages.Tables.Update.UserLoginsModel
+@{
+    ViewData["Title"] = "Обновить вход пользователя";
+    ViewData["Table"] = "UserLogins";
+    ViewData["Type"] = "Update";
+}
+
+<h1 class="table-title">Изменить вход пользователя</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.UserId"></label>
+                <select asp-for="Form.UserId" asp-items="Model.OriginalUser"></select>
+                <span asp-validation-for="Form.UserId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.LoginDate"></label>
+                <input asp-for="Form.LoginDate">
+                <span asp-validation-for="Form.LoginDate"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Изменить" class="submitlink">
+    </div>
+</form>
+
+<form method="post" asp-page-handler="Delete">
+    <input type="submit" value="Удалить" class="deletelink">
+</form>

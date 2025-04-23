@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DBCoursework.Pages.Tables.Update {
-    public class CommunitiesModel(DatabaseManager databaseManager, FormsManager formsManager) : UpdateTableModel<CommunitiesForm>(databaseManager, formsManager) {
+    public class ChatsModel : UpdateTableModel<ChatsForm> {
         public IEnumerable<SelectListItem>? Creator { get; set; }
         public IEnumerable<SelectListItem>? Members { get; set; }
+
+        public ChatsModel(DatabaseManager databaseManager, FormsManager formsManager) : base(databaseManager, formsManager) { }
 
         public async override Task<IActionResult> OnGetAsync(int id) {
             await base.OnGetAsync(id);

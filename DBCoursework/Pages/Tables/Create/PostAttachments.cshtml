@@ -1,0 +1,35 @@
+﻿@page "/PostAttachments/create"
+@model DBCoursework.Pages.Tables.Create.PostAttachmentsModel
+@{
+    ViewData["Title"] = "Добавить вложение к посту";
+    ViewData["Table"] = "PostAttachments";
+    ViewData["Type"] = "Create";
+}
+
+<h1 class="table-title">Добавить вложение к посту</h1>
+
+<form class="content-main" method="post">
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.PostId"></label>
+                <select asp-for="Form.PostId" asp-items="Model.Post"></select>
+                <span asp-validation-for="Form.PostId"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row field-title">
+        <div>
+            <div class="input-container">
+                <label asp-for="Form.FilePath"></label>
+                <input asp-for="Form.FilePath">
+                <span asp-validation-for="Form.FilePath"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row">
+        <input type="submit" value="Добавить" class="submitlink">
+    </div>
+</form>

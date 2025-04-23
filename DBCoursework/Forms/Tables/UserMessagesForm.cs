@@ -13,7 +13,7 @@ namespace DBCoursework.Forms.Tables {
         [Required]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Сообщение:")]
-        public string? Messsage { get; set; }
+        public string? Message { get; set; }
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Время создания:")]
