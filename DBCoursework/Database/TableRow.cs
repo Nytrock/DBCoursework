@@ -60,6 +60,12 @@ namespace DBCoursework.Database {
             return _columns[columnName];
         }
 
+        public object PopColumn(string columnName) {
+            object value = _columns[columnName];
+            _columns.Remove(columnName);
+            return value;
+        }
+
         public void SetColumn(string columnName, object? value) {
             if (DatabaseUtils.IsTableColumnEmpty(value))
                 return;

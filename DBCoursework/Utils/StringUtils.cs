@@ -22,5 +22,15 @@ namespace DBCoursework.Utils {
             }
             return builder.ToString();
         }
+
+        public static string? CutString(this string? text, int length) {
+            if (text is null)
+                return text;
+
+            if (text.Length < length)
+                return text;
+
+            return text[..length];
+        }
     }
 }

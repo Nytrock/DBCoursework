@@ -17,5 +17,14 @@
                 return $"'{value}'";
             return value.ToString();
         }
+
+        public static object? GetColumnByOtherColumn(this List<TableRow> rows, string columnName, string otherColumnName, object otherColumnValue) {
+            foreach (var row in rows) {
+                if (row.GetColumn(otherColumnName).Equals(otherColumnValue))
+                    return row.GetColumn(columnName);
+            }
+
+            return null;
+        }
     }
 }
