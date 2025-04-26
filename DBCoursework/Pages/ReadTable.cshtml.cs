@@ -5,12 +5,25 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DBCoursework.Pages {
     public class ReadTableModel : PageModel {
-        private DatabaseManager _databaseManager;
+        public const int ROWS_ON_PAGE = 50;
+        public const int TEXT_MAX_LENGTH = 50;
+
+        private readonly DatabaseManager _databaseManager;
 
         public required IReadOnlyList<TableRow> Rows { get; set; }
+        public int RowsCount { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public required string TableName { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int PageNum { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? OrderColumn { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? OrderDirection { get; set; }
 
         public ReadTableModel(DatabaseManager databaseManager) {
             _databaseManager = databaseManager;
@@ -18,8 +31,22 @@ namespace DBCoursework.Pages {
 
         public async Task<IActionResult> OnGetAsync() {
             Rows = await _databaseManager.ReadAll(TableName);
+            RowsCount = Rows.Count;
             await LoadForeignKeys();
+
+            if (!string.IsNullOrEmpty(OrderColumn)) {
+                if (OrderDirection == "DESC")
+                    Rows = [.. Rows.OrderByDescending(row => row.GetColumn(OrderColumn))];
+                else
+                    Rows = [.. Rows.OrderBy(row => row.GetColumn(OrderColumn))];
+            }
+
+            Rows = Rows.Skip(PageNum * ROWS_ON_PAGE).Take(ROWS_ON_PAGE).ToList();
             return Page();
+        }
+
+        public IActionResult OnPost(string orderColumn, string orderDirection) {
+            return Redirect($"/{TableName}?pageNum={PageNum}&orderColumn={orderColumn}&orderDirection={orderDirection}");
         }
 
         private async Task LoadForeignKeys() {
@@ -71,6 +98,9 @@ namespace DBCoursework.Pages {
 
                         row.SetColumn("author", authorName);
                         row.SetColumn("community", communityName);
+
+                        string? text = Convert.ToString(row.GetColumn("text"));
+                        row.SetColumn("text", text.CutString(TEXT_MAX_LENGTH));
                     }
                     break;
                 case "PostAttachments":
@@ -91,8 +121,11 @@ namespace DBCoursework.Pages {
                         string? userName = Convert.ToString(users.GetColumnByOtherColumn("username", "id", userId));
                         string? postText = Convert.ToString(posts.GetColumnByOtherColumn("text", "id", postId));
 
-                        row.SetColumn("post", postText.CutString(50));
+                        row.SetColumn("post", postText.CutString(TEXT_MAX_LENGTH));
                         row.SetColumn("user", userName);
+
+                        string? text = Convert.ToString(row.GetColumn("text"));
+                        row.SetColumn("text", text.CutString(TEXT_MAX_LENGTH));
                     }
                     break;
                 case "ChatMessages":
@@ -107,6 +140,9 @@ namespace DBCoursework.Pages {
 
                         row.SetColumn("chat", chatName);
                         row.SetColumn("user", userName);
+
+                        string? message = Convert.ToString(row.GetColumn("message"));
+                        row.SetColumn("message", message.CutString(TEXT_MAX_LENGTH));
                     }
                     break;
                 case "UserMessages":
@@ -120,6 +156,9 @@ namespace DBCoursework.Pages {
 
                         row.SetColumn("receiver", senderName);
                         row.SetColumn("sender", receiverName);
+
+                        string? message = Convert.ToString(row.GetColumn("message"));
+                        row.SetColumn("message", message.CutString(TEXT_MAX_LENGTH));
                     }
                     break;
             }

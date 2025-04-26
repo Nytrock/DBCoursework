@@ -30,7 +30,7 @@ namespace DBCoursework.Utils {
             if (text.Length < length)
                 return text;
 
-            return text[..length];
+            return text[..length] + "...";
         }
     }
 }

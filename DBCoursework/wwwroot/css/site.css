@@ -202,7 +202,7 @@ caption {
     padding-left: 0;
     float: right;
     position: relative;
-    margin-top: -48px;
+    margin-top: -40px;
 }
 
 .object-tools li {
@@ -263,26 +263,6 @@ table thead th .text {
     padding: 8px 10px;
 }
 
-.paginator {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.8125rem;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    line-height: 22px;
-    margin: 0;
-    border-top: 1px solid #272727;
-    width: 100%;
-}
-
-.changelist .paginator {
-    color: #d0d0d0;
-    border-bottom: 1px solid #272727;
-    background: #121212;
-    overflow: hidden;
-}
-
 .form-row {
     overflow: hidden;
     padding: 10px;
@@ -330,6 +310,15 @@ label {
     color: #fff;
     cursor: pointer;
     transition: background 0.15s;
+    display: inline-block;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 0.67em; 
+    height: fit-content;
 }
 
 .content-main {
@@ -366,4 +355,13 @@ label:has(+ textarea[data-val-required])::after {
     position: relative;
     margin-left: auto;
     cursor: pointer;
+}
+
+.sorting {
+    height: fit-content;
+    margin: 0.67em 0;
+}
+
+.sorting select {
+    height: 35px;
 }

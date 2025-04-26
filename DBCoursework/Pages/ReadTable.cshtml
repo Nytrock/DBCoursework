@@ -7,6 +7,37 @@
 }
 
 <h1>Таблица @Model.TableName</h1>
+@if (@Model.Rows.Count != 0) {
+    <form method="POST" class="sorting">
+        <select name="orderColumn" required>
+            <option disabled selected value="">-----</option>
+            @foreach (var column in Model.Rows.First().GetColumns()) {
+               @if (column.Key == Model.OrderColumn) {
+                    <option value="@column.Key" selected>@column.Key</option>
+               } else {
+                    <option value="@column.Key">@column.Key</option>
+               }
+            }
+        </select>
+        <select name="orderDirection" required>
+            <option disabled selected value="">-----</option>
+
+            @if (Model.OrderDirection == "DESC") {
+                <option value="DESC" selected>По убыванию</option>
+            } else {
+                <option value="DESC">По убыванию</option>
+            }
+
+            @if (Model.OrderDirection == "ASC") {
+                <option value="ASC" selected>По возрастанию</option>
+            } else {
+                <option value="ASC">По возрастанию</option>
+            }
+        </select>
+        <input type="submit" value="Сортировать" class="submitlink">
+    </form>
+}
+
 <div id="content-main">
     <ul class="object-tools">
         <li>
@@ -25,7 +56,6 @@
                                 @foreach (var column in Model.Rows.First().GetColumns()) {
                                     <th>
                                         <div class="text">@column.Key</div>
-                                        <div class="clear"></div>
                                     </th>
                                 }
                             </tr>
@@ -48,8 +78,21 @@
                     </table>
                 </div>
             }
-            <p class="paginator">Кол-во объектов: @Model.Rows.Count</p>
         </div>
     </div>
+
+    <div class="pagination">
+        @{
+            int previousPage = Model.PageNum - 1;
+            int nextPage = Model.PageNum + 1;
+        }
+
+        @if (Model.PageNum != 0) {
+            <a href="?pageNum=@previousPage&OrderColumn=@Model.OrderColumn&OrderDirection=@Model.OrderDirection" class="submitlink">Предыдущая</a>
+        }
+
+        @if (ReadTableModel.ROWS_ON_PAGE * (Model.PageNum + 1) < Model.RowsCount) {
+            <a href="?pageNum=@nextPage&OrderColumn=@Model.OrderColumn&OrderDirection=@Model.OrderDirection" class="submitlink">Следующая</a>
+        }
+    </div>
 </div>
-<br class="clear">
