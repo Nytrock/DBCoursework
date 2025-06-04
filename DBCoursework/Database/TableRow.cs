@@ -56,8 +56,11 @@ namespace DBCoursework.Database {
             return builder.ToString();
         }
 
-        public object GetColumn(string columnName) {
-            return _columns[columnName];
+        public object? GetColumn(string columnName) {
+            object columnValue = _columns[columnName];
+            if (DatabaseUtils.IsTableColumnEmpty(columnValue))
+                return null;
+            return columnValue;
         }
 
         public object PopColumn(string columnName) {
